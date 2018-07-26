@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        padding:0;
+        margin:0;
+    }
+    body,html{
+        height: 100%;
+    }
+    .main-left{
+        height: 100%;
+        background: #1d2531;
+        width:100px;
+        position: relative;
+        float: left;
+ 
+      
+    }
+    .left-img{
+        text-align: center;
+    }
+    .left-img>img{
+        padding-top:20px;
+    }
+    .bottom-img{
+        position:fixed;
+        left:0;
+        bottom:20px;
+        text-align: center;
+    }
+    .bottom-img>img:nth-child(1){
+         margin-right:17px;
+    }
+    /**   aside**/
+    aside{
+        width: 250px;
+        background: #222c3c;
+        height: 100%;
+        color: #b7c0cd;
+        float: left;
+    }
+    .aside-main{
+        padding:33px 30px 0 30px;
+        line-height: 28px;
+    }
+    .aside-t{
+        margin-top:10px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid #b7c0cd;
+
+    }
+    h3{
+        opacity: .5;
+    }
+    h3>img{
+        float: right;
+    }
+    .aside-t span{
+        float: right;
+        width: 36px;
+        height: 26px;
+        background:#269bf3;
+        border-radius: 50px;
+        text-align: center;
+        line-height: 26px;
+    }
+    .goals{
+        position: fixed;;
+        left:130px;
+        bottom:0;
+        font-size:10px;
+    }
+    
+    .goals>div{
+       text-align: right;
+       margin-right:-105px;
+    }
+    /********main*******/
+    .main{
+        float: right;
+        width:calc(100% - 350px);
+        background: #269bf3;
+    }
+    </style>
+</head>
+<body>
+    <div class="main-left">
+        <div class="left-img">
+            <img src="images/icon-1.png" alt="">
+            <img src="images/icon-2.png" alt="">
+            <img src="images/icon-3.png" alt="">
+            <img src="images/icon-4.png" alt="">
+        </div>
+        <div class="bottom-img">
+            <img src="images/grid.png" alt="">
+            <img src="images/setting.png" alt="">
+        </div>
+    </div>
+    <aside>
+      <div class="aside-main">
+          <div class="aside-t">
+              <h3>MENU<img src="images/setting.png" alt=""></h3>
+              <p>Overview</p>
+              <p>Sales<span>53</span></p>
+              <p>Your Staff</p>
+              <p>Analytics & Targeting</p>
+              <p>What’s New</p>
+              
+          </div>
+          <div class="aside-t">
+            <h3>MENU<img src="images/setting.png" alt=""></h3>
+            <p>Overview</p>
+            <p>Sales<span>53</span></p>
+            <p>Your Staff</p>
+            <p>Analytics & Targeting</p>
+            <p>What’s New</p>
+            
+        </div>
+        <div class="aside-t">
+            <h3>MENU<img src="images/setting.png" alt=""></h3>
+            <p>Overview</p>
+            <p>Sales<span>53</span></p>
+            <p>Your Staff</p>
+            <p>Analytics & Targeting</p>
+            <p>What’s New</p>
+            
+        </div>
+
+
+        <div class="goals">
+                <p>Monthyly Goals<div>$580/$3200</div></p> 
+        </div>
+      </div>
+    </aside>
+    <div class="main">
+        <div class="title">
+           <span>Message</span> <div><img src="images/face.png"><p>Jordan J.</p><p>Administrator</p></div>
+        </div>
+    </div>
+</body>
+</html>
