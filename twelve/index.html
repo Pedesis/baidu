@@ -17,21 +17,30 @@
         height: 100%;
         background: #1d2531;
         width:100px;
-        position: relative;
+    
         float: left;
  
       
     }
     .left-img{
-        text-align: center;
+        position: fixed;
+        left:0;
+        top:0;
+        width:100px;
     }
     .left-img>img{
         padding-top:20px;
+        display: block;
+        margin-left:auto;
+        margin-right:auto;
+     
+
     }
     .bottom-img{
         position:fixed;
         left:0;
         bottom:20px;
+        width: 100px;
         text-align: center;
     }
     .bottom-img>img:nth-child(1){
@@ -44,10 +53,12 @@
         height: 100%;
         color: #b7c0cd;
         float: left;
+       
     }
     .aside-main{
         padding:33px 30px 0 30px;
         line-height: 28px;
+        position: fixed;
     }
     .aside-t{
         margin-top:10px;
@@ -71,22 +82,200 @@
         line-height: 26px;
     }
     .goals{
-        position: fixed;;
+        position: fixed;
+        width: 250px;
         left:130px;
         bottom:0;
         font-size:10px;
     }
-    
-    .goals>div{
-       text-align: right;
-       margin-right:-105px;
+    .goals>span:nth-child(1){
+        margin-right:20px;
     }
+    /*input 进度条设置*/
+.goals input[type="range"]{
+	-webkit-appearance: none;    /*去除默认样式*/
+	border-radius: 5px;
+	width: 190px;
+	height: 5px;
+	background: #2d3848;
+}
+.color-mask{
+	position: absolute;
+	bottom:10px;
+	left: 0px;
+    border-radius: 5px 0 0 5px;
+	width: 60px;
+	height: 5px;
+	background-color: #937de4;
+}
+
+input[type="range"]::-webkit-slider-thumb{
+	-webkit-appearance: none;  /*去除滑块默认样式*/
+	width: 0;
+	height: 0;
+}
+input[type="range"]::-moz-range-thumb{
+	-webkit-appearance: none;  /*去除滑块默认样式*/
+	width: 0;
+	height: 0;
+}
     /********main*******/
-    .main{
-        float: right;
-        width:calc(100% - 350px);
-        background: #269bf3;
+  .main{
+  width:calc(100% - 350px);
+  float: right;
+  }
+    .title{
+        height: 81px;
+        position: fixed;
+        top:0;
+        left: 350px;
+        right:0;
+        border-bottom: 1px solid #e6e9ec;
+        z-index: 999;
+        line-height: 81px;
+        padding:0 30px;
+        background: #fff;
     }
+    .title>h1{
+        display:inline-block;
+    }
+  .title-face{
+      height: 81px;
+      float: right;
+      
+  }
+  .title-face>img{
+    vertical-align: middle;
+  }
+
+  .title-face>div{
+      line-height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      padding-right: 20px;
+  }
+/*******list********/
+.list{
+    width: 400px;
+    margin-top:81px;
+    border-right: 1px solid #e6e9ec;
+    float: left;
+}
+.search{
+    height: 71px;
+    border-bottom: 1px solid #e6e9ec;
+    line-height: 71px;
+    position: relative;
+}
+.pl{
+    padding-left:30px;
+}
+.search>input{
+    width:340px;
+    height: 36px;
+    border:1px solid #e5e8ee;
+    border-radius: 5px;
+    text-indent: 2px;
+    outline: none;
+}
+.search>i{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top:50%;
+    right: 40px;
+    background:url(images/search.png) no-repeat;
+    margin-top:-8px;
+}
+.friend{
+    border-bottom: 1px solid #e6e9ec;
+    padding-right:22px;
+}
+.friend-top{
+    padding-top:16px;
+}
+.friend-top::after{
+    display:block;
+clear:both;
+content:"";
+visibility:hidden;
+height:0
+
+}
+.friend-top>img{
+    float: left;
+    padding-right:22px;
+}
+.friend-page{
+    float: left;
+    margin-bottom: 15px;
+}
+.friend-icon{
+     width:10px;
+     height: 10px;
+     border-radius: 50%;
+     margin-right: 10px;
+     display: inline-block;
+     background-color:#00aaff;
+}
+.friend-top>span{
+    float: right;
+}
+.friend-b{
+    padding-right:40px;
+    font-size: 14px;
+}
+.friend-r{
+    float: right;
+    width: 24px;
+    height: 24px;
+    background: #00aaff;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    margin-top:-40px;
+}
+.choosen{
+    border-left:2px solid #00aaff;
+}
+/** commmunication**/
+.communication{
+    margin-top:81px;
+    width: calc(100% - 401px);
+    float: right;
+    height: 100px;
+    
+}
+.c-person{
+    height: 71px;
+    line-height: 71px;
+    border-bottom: 1px solid #e6e9ec;
+}
+.c-person>p{
+    float: left;
+}
+.c-person>p span{
+    display:inline-block;
+    margin-left: 30px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background:#1bb934;
+}
+.com-img{
+    float:right;
+    position: relative;
+}
+li{
+    width: 20px;
+    height: 20px;
+    border:2px solid #ced0da;
+    list-style: none;
+    float: left;
+    background: url(images/t-1.png) center no-repeat;
+    
+}
+
     </style>
 </head>
 <body>
@@ -134,14 +323,53 @@
 
 
         <div class="goals">
-                <p>Monthyly Goals<div>$580/$3200</div></p> 
+                <span>Monthyly Goals</span><span>$580/$3200</span>
+                <span class="color-mask"></span>
+                <input type="range">
         </div>
       </div>
     </aside>
     <div class="main">
         <div class="title">
-           <span>Message</span> <div><img src="images/face.png"><p>Jordan J.</p><p>Administrator</p></div>
+           <h1>Message</h1> <div class="title-face"><img src="images/face.png" style="padding-right: 20px;"><div><p>Jordan J.</p><p>Administrator</p></div>
+           <img src="images/down.png"></div>
+        </div>
+        <div class="list">
+            <div class="search pl">
+                    <input type="search" placeholder="Search">
+                <i></i>
+                 
+            </div>
+            <div class="friend pl choosen">
+                <div class="friend-top">
+                    <img src="images/face-2.png" alt="">
+                    <div class="friend-page"><p><span class="friend-icon"></span>Bessie Berry</p><p>Twitter</p></div><span>3m</span>
+                </div>
+                <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p><span class="friend-r">4</span>
+            </div>
+            <div class="friend pl choosen">
+                    <div class="friend-top">
+                        <img src="images/face-2.png" alt="">
+                        <div class="friend-page"><p><span class="friend-icon"></span>Bessie Berry</p><p>Twitter</p></div><span>3m</span>
+                    </div>
+                    <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p><span class="friend-r">4</span>
+                </div>
+        </div>
+        <div class="communication">
+                <div class="c-person pl">
+        <p>Bessie Berry<span></span></p>
+        <div class="com-img">
+            <ul>
+           <li><i></i></li> 
+           <li><i></i></li> 
+           <li><i></i></li> 
+        
+                
+            </ul>
+        </div>
+        </div>
         </div>
     </div>
+
 </body>
 </html>
