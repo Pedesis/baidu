@@ -17,7 +17,7 @@
         height: 100%;
         background: #1d2531;
         width:100px;
-    
+        position: fixed;
         float: left;
  
       
@@ -53,6 +53,9 @@
         height: 100%;
         color: #b7c0cd;
         float: left;
+        position: fixed;
+        top:0;
+        left:100px;
        
     }
     .aside-main{
@@ -190,6 +193,7 @@ input[type="range"]::-moz-range-thumb{
 .friend{
     border-bottom: 1px solid #e6e9ec;
     padding-right:22px;
+    padding-bottom: 20px;
 }
 .friend-top{
     padding-top:16px;
@@ -264,16 +268,50 @@ height:0
 }
 .com-img{
     float:right;
-    position: relative;
 }
 li{
-    width: 20px;
-    height: 20px;
-    border:2px solid #ced0da;
-    list-style: none;
+	display: inline-block;
+
+	margin-left: -1px;
+	width: 30px;
+	height: 30px;
+	list-style: none;
+}
+li>i{
+    vertical-align: middle;
+    display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url(images/t-1.png) no-repeat;
+}
+/******com-information********/
+.com-information{
+    border-bottom: 1px solid #e6e9ec;
+    padding-bottom: 30px;
+    position: relative;
+}
+.information{
+    padding-top:30px;
+}
+.information>img{
     float: left;
-    background: url(images/t-1.png) center no-repeat;
-    
+    display: block;
+    margin-right:20px;
+
+}
+.information>div{
+   margin-left:70px;
+}
+.date{
+    text-align: center;
+    position:absolute;
+    left:50%;
+    bottom: 0;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    margin-bottom: -20px;
 }
 
     </style>
@@ -312,15 +350,15 @@ li{
             
         </div>
         <div class="aside-t">
-            <h3>MENU<img src="images/setting.png" alt=""></h3>
-            <p>Overview</p>
-            <p>Sales<span>53</span></p>
-            <p>Your Staff</p>
-            <p>Analytics & Targeting</p>
-            <p>What’s New</p>
+                <h3>MENU<img src="images/setting.png" alt=""></h3>
+                <p>Overview</p>
+                <p>Sales<span>53</span></p>
+                <p>Your Staff</p>
+                <p>Analytics & Targeting</p>
+                <p>What’s New</p>
+                
+            </div>
             
-        </div>
-
 
         <div class="goals">
                 <span>Monthyly Goals</span><span>$580/$3200</span>
@@ -347,28 +385,90 @@ li{
                 </div>
                 <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p><span class="friend-r">4</span>
             </div>
-            <div class="friend pl choosen">
+            <div class="friend pl">
                     <div class="friend-top">
                         <img src="images/face-2.png" alt="">
                         <div class="friend-page"><p><span class="friend-icon"></span>Bessie Berry</p><p>Twitter</p></div><span>3m</span>
                     </div>
-                    <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p><span class="friend-r">4</span>
+                    <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p>
                 </div>
+                <div class="friend pl">
+                        <div class="friend-top">
+                            <img src="images/face-2.png" alt="">
+                            <div class="friend-page"><p><span class="friend-icon"></span>Bessie Berry</p><p>Twitter</p></div><span>3m</span>
+                        </div>
+                        <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p>
+                    </div>
+                    <div class="friend pl">
+                            <div class="friend-top">
+                                <img src="images/face-2.png" alt="">
+                                <div class="friend-page"><p><span class="friend-icon"></span>Bessie Berry</p><p>Twitter</p></div><span>3m</span>
+                            </div>
+                            <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p>
+                        </div>
+                        <div class="friend pl">
+                                <div class="friend-top">
+                                    <img src="images/face-2.png" alt="">
+                                    <div class="friend-page"><p><span class="friend-icon"></span>Bessie Berry</p><p>Twitter</p></div><span>3m</span>
+                                </div>
+                                <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p><span class="friend-r">4</span>
+                            </div>
+                            <div class="friend pl">
+                                    <div class="friend-top">
+                                        <img src="images/face-2.png" alt="">
+                                        <div class="friend-page"><p><span class="friend-icon"></span>Bessie Berry</p><p>Twitter</p></div><span>3m</span>
+                                    </div>
+                                    <p class="friend-b">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact, it's relatively quick, and stable...</p><span class="friend-r">4</span>
+                                </div>
         </div>
         <div class="communication">
                 <div class="c-person pl">
-        <p>Bessie Berry<span></span></p>
-        <div class="com-img">
-            <ul>
-           <li><i></i></li> 
-           <li><i></i></li> 
-           <li><i></i></li> 
-        
-                
-            </ul>
+                <p>Bessie Berry<span></span></p>
+                <div class="com-img">
+                    <ul>
+                <li><i></i></li> 
+                <li><i></i></li> 
+                <li><i></i></li>     
+                <li>113</li>
+                    </ul>
+                </div>
+                </div>
+        <div class="com-information">
+                <div class="information pl">
+                    <img src="images/face-2.png" alt=""><div><p>Bessie Berry<span>8:31 AM</span></p><p>Hi guys Ive got the O2 package and have really 
+                        slow internet. A speed
+                         check online said i can get 3mbps but it seems more like 0.5 these days, just freezing and taking ages to open
+                         pages and open audio files for example. I have decided to switch to the UPC package which offers 10mbps but do you think 
+                         i will get it?</p></div>
+                </div>
+                <div class="information pl">
+                        <img src="images/face-2.png" alt=""><div><p>Bessie Berry<span>8:31 AM</span></p><p>Hi guys Ive got the O2 package and have really 
+                            slow internet. A speed
+                             check online said i can get 3mbps but it seems more like 0.5 these days, just freezing and taking ages to open
+                             pages and open audio files for example. I have decided to switch to the UPC package which offers 10mbps but do you think 
+                             i will get it?</p></div>
+                    </div>
+                <div class="date">Tuesday</div>
+              </div>
+              <div class="com-information">
+                    <div class="information pl">
+                        <img src="images/face-2.png" alt=""><div><p>Bessie Berry<span>8:31 AM</span></p><p>Hi guys Ive got the O2 package and have really 
+                            slow internet. A speed
+                             check online said i can get 3mbps but it seems more like 0.5 these days, just freezing and taking ages to open
+                             pages and open audio files for example. I have decided to switch to the UPC package which offers 10mbps but do you think 
+                             i will get it?</p></div>
+                    </div>
+                    <div class="information pl">
+                            <img src="images/face-2.png" alt=""><div><p>Bessie Berry<span>8:31 AM</span></p><p>Hi guys Ive got the O2 package and have really 
+                                slow internet. A speed
+                                 check online said i can get 3mbps but it seems more like 0.5 these days, just freezing and taking ages to open
+                                 pages and open audio files for example. I have decided to switch to the UPC package which offers 10mbps but do you think 
+                                 i will get it?</p></div>
+                        </div>
+                    <div class="date">Tuesday</div>
+                  </div>
         </div>
-        </div>
-        </div>
+       
     </div>
 
 </body>
