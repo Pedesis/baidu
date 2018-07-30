@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>转化二进制</title>
 </head>
 <body>
-    <input id="dec" type="text" value="45">
-    <button id="trans-btn">转化为二进制</button>
-    <p id="result">运算结果</p>
+        <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+        <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+        <button id="trans-btn">转化为二进制</button>
+        <p id="result">运算结果</p>
     <script>
-var decNumber=document.getElementById("dec");
-var dec=decNumber.value;
 var result=document.getElementById("trans-btn");
-var arr=new Array();
-var p=document.getElementById("result");
 
+var p=document.getElementById("result");
 function dec2bin(decNumber) {
+    var arr=new Array();
     //alert(decNumber);
         while(parseInt(decNumber)>0){
          //   alert(1);
@@ -27,21 +26,28 @@ function dec2bin(decNumber) {
        // alert(a);
        // console.log(pon);
     }
-    for(var i=0;i<arr.length;i++){
-        console.log(arr[i]);
-       p.innerText+= arr[i];
-    }
   
+     x= arr.toString();
+    var b=x.replace(/,/g,"");
     // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
- 
+     return b;
 }
-window.onload=function(){
         result.onclick=function(){
-        dec2bin(dec);
-
-    }
+         var dec=document.getElementById("dec-number").value;
+         var bin=document.getElementById("bin-bit").value;
+          y=dec2bin(dec);
+        //alert(y.length);
+         if(bin>y.length){
+           for(var i=y.length;i<bin;i++){
+              var y="0"+y;
+           }
+        p.innerHTML=y;
+         }else{
+            p.innerHTML=y;   
+            console.log("输入位数小于转化后的二进制本身位数"); 
+         }
+        
 }
-
 // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
 // Some coding
 
