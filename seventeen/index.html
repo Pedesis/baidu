@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="dec" type="text" value="45">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <script>
+var decNumber=document.getElementById("dec");
+var dec=decNumber.value;
+var result=document.getElementById("trans-btn");
+var arr=new Array();
+var p=document.getElementById("result");
+
+function dec2bin(decNumber) {
+    //alert(decNumber);
+        while(parseInt(decNumber)>0){
+         //   alert(1);
+        var pon=decNumber/2;
+        var a=decNumber%2;
+        arr.unshift(a);
+        decNumber=parseInt(pon);
+       // alert(a);
+       // console.log(pon);
+    }
+    for(var i=0;i<arr.length;i++){
+        console.log(arr[i]);
+       p.innerText+= arr[i];
+    }
+  
+    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+ 
+}
+window.onload=function(){
+        result.onclick=function(){
+        dec2bin(dec);
+
+    }
+}
+
+// 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+// Some coding
+
+    </script>
+</body>
+</html>
