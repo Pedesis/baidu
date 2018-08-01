@@ -26,7 +26,7 @@
                     <li><span>HTML</span><a href="">Some Link1</a></li>
                     <li><span>HTML</span><a href="">Some Link2</a></li>
                     <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
-                    <li><span>CSS</span><a href="">Some Link4</a></li>
+                    <li><span>CSS</span><a href="" class="active">Some Link4</a></li>
                 </ul>
             </div>
             <img src="">
@@ -36,22 +36,55 @@
     <script>
 
     function getAllListItem() {
-        var li=document.getElementsByTagName("li");
+       // var li=document.getElementsByTagName("li");
+       var li=document.querySelectorAll("li");
+        console.log(li.length) ;
         // 返回页面中所有li标签
     }
 
     function findAllHtmlSpanInOneSection(sectionId) {
         // 返回某个section下所有span中内容为HTML的span标签
+        var sec=document.getElementById(sectionId);
+        var sp=sec.getElementsByTagName("span");
+        var x=0;
+      
+        for(var i=0;i<sp.length;i++){
+            if(sp[i].innerText=="HTML"){
+                x=x+1;
+            }
+        }
+        console.log(x);
     }
 
     function findListItem(sectionId, spanCont) {
+        var sec=document.getElementById(sectionId);
+        var sp=sec.getElementsByTagName(spanCont);
+        var x=0;
+      
+        for(var i=0;i<sp.length;i++){
+            if(sp[i].innerText==spanCont){
+                x=x+1;
+            }
+        }
+        console.log(x);
         // 返回某个section下，所有所包含span内容为spanCont的LI标签
     }
 
     function getActiveLinkContent(sectionId) {
+        var sec=document.getElementById(sectionId);
+        var sp=sec.getElementsByTagName("*");
+        var arr=new Array();
+        for(var i=0;i<sp.length;i++){
+            if(sp[i].className=="active"){
+               arr.push(sp[i]);
+            }
+        }
+      console.log(arr.length);
         // 返回某个section下，class为active的链接中包含的文字内容
     }
-
+getAllListItem();
+findAllHtmlSpanInOneSection("news-normal");
+getActiveLinkContent("news-normal");
     </script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS Sprite</title>
+    <style>
+    *{
+        padding:0;
+        margin:0;
+
+    }
+    .face{
+     width: 100%;
+     height: 500px;
+
+    }
+   #sprite{
+        width: 500px;
+     height: 500px;
+       background: url(http://ife.baidu.com/2016/static/img/erik_ce204002.jpg) no-repeat; 
+     background-position:  0 -480px;
+      
+       
+   }
+    </style>
+</head>
+<body>
+    <div class="face">
+       <div id="sprite"></div>
+
+    </div>
+    <script>
+    var sprite=document.getElementById("sprite");
+    var x=-480;
+    function timer(){
+        if(x>=-8160){
+            x=x-480;
+            sprite.style.backgroundPosition=0+""+x+"px";
+        
+        }else{
+            x=480;
+            sprite.style.backgroundPosition=0+""+x+"px"; 
+        }
+    }
+    ti=setInterval(timer,1000);
+    ti;
+    </script>
+</body>
+</html>
