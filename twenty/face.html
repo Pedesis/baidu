@@ -12,7 +12,7 @@
 
     }
     .face{
-     width: 100%;
+     width: 500px;
      height: 500px;
 
     }
@@ -37,15 +37,16 @@
     function timer(){
         if(x>=-8160){
             x=x-480;
-            sprite.style.backgroundPosition=0+""+x+"px";
+            sprite.style.backgroundPositionY=x+"px";
+          
         
         }else{
             x=480;
-            sprite.style.backgroundPosition=0+""+x+"px"; 
+            sprite.style.backgroundPositionY=x+"px"; 
         }
     }
-    ti=setInterval(timer,1000);
-    ti;
+    setInterval(timer,500);
+   
     </script>
 </body>
 </html>
