@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <select id="year-select">
+            </select>
+            
+            <select id="month-select">
+              
+            </select>
+            
+            <select id="day-select">
+   
+            </select>
+            
+            <select id="hour-select">
+          
+            </select>
+            
+            <select id="minite-select">
+          
+            </select>
+            
+            <select id="second-select">
+         
+            </select>
+            
+            <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+<script>
+var year=document.getElementById("year-select");
+var month=document.getElementById("month-select");
+var day=document.getElementById("day-select");
+var hour=document.getElementById("hour-select");
+var minite=document.getElementById("minite-select");
+var second=document.getElementById("second-select");
+var result=document.getElementById("result-wrapper");
+var time=document.querySelectorAll("select");
+
+function made(){
+    
+    console.log(option);
+    for(var i=2000;i<=2020;i++){
+        var option=document.createElement("option");
+        option.setAttribute("value",i);
+        option.innerHTML=i;
+        year.appendChild(option);
+    }
+    for(var i=1;i<=12;i++){
+        var option=document.createElement("option");
+        option.setAttribute("value",i);
+        option.innerHTML=i;
+        month.appendChild(option);
+    }
+    for(var i=1;i<=31;i++){
+        var option=document.createElement("option");
+        option.setAttribute("value",i);
+        option.innerHTML=i;
+        day.appendChild(option);
+    }
+    for(var i=1;i<=24;i++){
+        var option=document.createElement("option");
+        option.setAttribute("value",i);
+        option.innerHTML=i;
+        hour.appendChild(option);
+    }
+    for(var i=1;i<=60;i++){
+        var option=document.createElement("option");
+        option.setAttribute("value",i);
+        option.innerHTML=i;
+        minite.appendChild(option);
+    }
+    for(var i=1;i<=60;i++){
+        var option=document.createElement("option");
+        option.setAttribute("value",i);
+        option.innerHTML=i;
+        second.appendChild(option);
+    }
+    
+    
+}
+made();
+//console.log(new Date(Number(timer(year))));
+//console.log(year.value);
+function change(){
+    if(month.value==4||month.value==6||month.value==9||month.value==11){
+        initDay(30);
+    }else{
+    if(year.value % 4 == 0 && year.value % 100 != 0||year.value % 400 == 0){
+       //console.log(1);
+       if(month.value==2){
+        initDay(29);
+       }else{
+        initDay(31);
+       }
+   }else{
+    if(month.value==2){  
+        initDay(28);
+    }else{
+        initDay(31);
+    }
+   }
+    }
+   // console.log(3);
+   
+}
+function initDay(n){
+    for(var i=1;i<=n;i++){
+        var option=document.createElement("option");
+        option.setAttribute("value",i);
+        option.innerHTML=i;
+        day.appendChild(option);
+    }
+}
+for(var i=0;i<time.length;i++){
+    time[i].onclick=function(){
+     day.options.length=0;
+     change();
+    //console.log(day.length);
+    var now=new Date();
+    var font=new Date(year.value,month.value,day.value,hour.value,
+minite.value,second.value);
+var sum=now-font;
+console.log(font);
+    if(sum>0){
+      mi=Math.floor(sum%86400%3600/60);
+      ho=Math.floor(sum%86400/3600);
+      da=Math.floor(sum/1000/60/60/24);
+      se=Math.floor(sum%86400%3600/1000);
+      we=font.getDay();
+      result.innerHTML="已经过去"+year.value+"年"+month.value+"月"+day.value+"日星期"+we+"还有"+da+" 天"+ho+" 小时"+mi+"分 "+se+" 秒";
+    }else{
+      sum=font-now;
+      result.innerHTML="距离"+year.value+"年"+month.value+"月"+day.value+"日星期"+we+"还有"+da+" 天"+ho+" 小时"+mi+"分 "+se+" 秒";
+    }
+   
+}
+}
+// year.onclick = function(){
+//     //月份显示默认值
+//     month[0].selected = true;
+//     //天数显示默认值
+//     day[0].selected = true;
+// }
+
+</script>
+</body>
+</html>

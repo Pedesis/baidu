@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <p class="result"></p>
+   <script>
+     p=document.querySelector("p");
+   function timer(){
+    var date=new Date();
+    var day=date.getDay();
+    var year=date.getFullYear();
+    var month=date.getMonth()+1;
+    var dayDate=date.getDate();
+    var hours=date.getHours();
+    var minutes=date.getMinutes();
+    var seconds=date.getSeconds();
+      week(day);
+      p.innerHTML=year+"年"+add(month)+"月"+add(dayDate)+"日"+week(day)+" "+
+      add(hours)+":"+add(minutes)+":"+add(seconds)+apm(hours);
+      
+   }
+   function week(day){
+     switch(day){
+       case 1:
+       return "星期一";
+       case 2:
+       return "星期二";
+       case 3:
+       return "星期三";
+       case 4:
+       return "星期四";
+       case 5:
+       return "星期五";
+       case 6:
+       return "星期六";
+       case 0:
+       return "星期日";
+     }
+   }
+   function add(n){
+     if(n<10){
+         return "0"+n;
+     }else{
+       return n;
+     }
+   }
+   function apm(x){
+     if(x<12){
+       return "am";
+     }else{
+       return "pm";
+     }
+   }
+  setInterval("timer()",100);
+   </script>
+
+
+</body>
+</html>
