@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="change">
         <select id="year-select">
             </select>
             
@@ -29,7 +30,7 @@
             <select id="second-select">
          
             </select>
-            
+        </div>
             <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
 <script>
 var year=document.getElementById("year-select");
@@ -40,7 +41,8 @@ var minite=document.getElementById("minite-select");
 var second=document.getElementById("second-select");
 var result=document.getElementById("result-wrapper");
 var time=document.querySelectorAll("select");
-
+var changeDiv=document.getElementById("change");
+//初始化日期；
 function made(){
     
     console.log(option);
@@ -62,19 +64,19 @@ function made(){
         option.innerHTML=i;
         day.appendChild(option);
     }
-    for(var i=1;i<=24;i++){
+    for(var i=0;i<24;i++){
         var option=document.createElement("option");
         option.setAttribute("value",i);
         option.innerHTML=i;
         hour.appendChild(option);
     }
-    for(var i=1;i<=60;i++){
+    for(var i=1;i<60;i++){
         var option=document.createElement("option");
         option.setAttribute("value",i);
         option.innerHTML=i;
         minite.appendChild(option);
     }
-    for(var i=1;i<=60;i++){
+    for(var i=1;i<60;i++){
         var option=document.createElement("option");
         option.setAttribute("value",i);
         option.innerHTML=i;
@@ -86,6 +88,7 @@ function made(){
 made();
 //console.log(new Date(Number(timer(year))));
 //console.log(year.value);
+//初始化2月
 function change(){
     if(month.value==4||month.value==6||month.value==9||month.value==11){
         initDay(30);
@@ -108,6 +111,7 @@ function change(){
    // console.log(3);
    
 }
+
 function initDay(n){
     for(var i=1;i<=n;i++){
         var option=document.createElement("option");
@@ -116,36 +120,37 @@ function initDay(n){
         day.appendChild(option);
     }
 }
-for(var i=0;i<time.length;i++){
-    time[i].onclick=function(){
-     day.options.length=0;
-     change();
+
+  changeDiv.onchange=function(){
+  
+   
     //console.log(day.length);
     var now=new Date();
-    var font=new Date(year.value,month.value,day.value,hour.value,
-minite.value,second.value);
-var sum=now-font;
+    console.log(now);
+    var font=new Date(year.value,month.value-1,day.value,hour.value,
+    minite.value,second.value);
+   var sum=now-font;
 console.log(font);
     if(sum>0){
-      mi=Math.floor(sum%86400%3600/60);
-      ho=Math.floor(sum%86400/3600);
-      da=Math.floor(sum/1000/60/60/24);
-      se=Math.floor(sum%86400%3600/1000);
+    val=Math.floor(sum/1000);
+      mi=Math.floor(val/60)%60;
+      ho=Math.floor(val/60/60)%24;
+      da=Math.floor(val/60/60/24);
+      se=Math.floor(val)%60;
       we=font.getDay();
-      result.innerHTML="已经过去"+year.value+"年"+month.value+"月"+day.value+"日星期"+we+"还有"+da+" 天"+ho+" 小时"+mi+"分 "+se+" 秒";
+      result.innerHTML="已经过去"+year.value+"年"+month.value+"月"+day.value+"日星期"+we+"    "+da+" 天"+ho+" 小时"+mi+"分 "+se+" 秒";
     }else{
       sum=font-now;
-      result.innerHTML="距离"+year.value+"年"+month.value+"月"+day.value+"日星期"+we+"还有"+da+" 天"+ho+" 小时"+mi+"分 "+se+" 秒";
+      result.innerHTML="距离"+year.value+"年"+month.value+"月"+day.value+"日星期"+we+"还有      "+da+" 天"+ho+" 小时"+mi+"分 "+se+" 秒";
     }
-   
+  }
+    
+  month.onclick=function(){
+    day.options.length=0;
+    change();
+    
 }
-}
-// year.onclick = function(){
-//     //月份显示默认值
-//     month[0].selected = true;
-//     //天数显示默认值
-//     day[0].selected = true;
-// }
+
 
 </script>
 </body>
