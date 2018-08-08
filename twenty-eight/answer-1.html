@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul{
+            display:block;
+            width: 200px;
+            
+        }
+    li{
+        list-style: none;
+        display: block;
+        
+        height: 40px;
+        border:1px solid black;
+        text-overflow:ellipsis;/*  //溢出时变为省略 */
+    }
+    .check{
+        background: green;
+    }
+    </style>
+</head>
+<body>
+        <div class="wrapper">
+                <input id="email-input" type="text">
+                <ul id="email-sug-wrapper" class="email-sug"></ul>
+            </div>
+    <script>
+        var email=document.getElementById("email-input");
+        var wrapper=document.getElementById("email-sug-wrapper");
+      //  var wr=document.querySelector(".wrapper");
+     // var uLi= wrapper.getElementsByTagName("li");
+    
+    var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    //一进入页面就将焦点放在输入框中
+    email.focus();
+    email.onkeyup= function(e) {
+    //获取用户输入，生成提示框中的提示内容，将提示内容添加到email-sug-wrapper中
+    //控制email-sug-wrapper的显示/隐藏状态
+    var e= e || window.event;
+    if(e.keyCode!=38&&e.keyCode!=40&&e.keyCode!=13){
+       
+      emailInput();
+     sh();
+     wrapper.firstChild.classList.add("check");
+     //用户按ESC键的时候，对用户输入进行全选
+     if(e.keyCode==18){
+       // alert(1);
+        email.select();
+      
+    }
+    }else{
+      
+    var checkLi = document.getElementsByClassName('check')[0];
+       checkLi.classList.remove('check');
+    　//var target = e.target || e.srcElement;
+     if(e.keyCode==38){
+        if(checkLi===wrapper.firstChild)
+                wrapper.lastChild.classList.add('check');
+                else checkLi.previousSibling.classList.add('check');    
+     }
+     if(e.keyCode==40){
+        if(checkLi===wrapper.lastChild)
+                    wrapper.firstChild.classList.add('check');
+                else checkLi.nextSibling.classList.add('check');
+    }
+    if(e.keyCode==13){
+        email.value=checkLi.innerHTML
+        wrapper.style.display="none";
+    }
+  
+    }
+   
+    // create();
+
+}
+
+function emailInput() {
+   // 拿到input输入框的输入内容trim后返回    
+   var content=email.value.trim();
+   content=htmlEncode (content);
+   
+   if(content.indexOf("@")==-1){
+        content+="@";
+   }else{
+       content=content;
+   }
+
+   
+var x=content.substring(content.indexOf("@")+1);
+var y=content.substring(0,content.indexOf("@")+1);
+wrapper.innerHTML="";
+    for(var i=0;i<postfixList.length;i++){
+        var li=document.createElement("li");
+        li.innerHTML=y+postfixList[i];
+        wrapper.appendChild(li);
+    }
+if(x!=""){
+    var reg=new RegExp(x,"i");
+    for(var i=0;i<postfixList.length;i++){
+        if(reg.test(postfixList[i])){
+        wrapper.getElementsByTagName("li")[i].style.display="block";
+        }else{
+            wrapper.getElementsByTagName("li")[i].style.display="none";
+        }
+    }
+}
+}
+//字符编码
+function htmlEncode (html){
+            //1.首先动态创建一个容器标签元素，如DIV
+            var temp = document.createElement ("div");
+            //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
+            (temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+            //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+            var output = temp.innerHTML;
+            temp = null;
+            return output
+        }
+//字符解码
+function htmlDecode (text){
+            //1.首先动态创建一个容器标签元素，如DIV
+            var temp = document.createElement("div");
+            //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+            temp.innerHTML = text;
+            //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+
+//判断空格
+function sh() {
+    var grep=/(^\s*)/;
+    if (email.value==""||email.value.replace(grep,"").length==0){
+        //隐藏提示框
+        wrapper.style.display="none";
+    } else {
+        //显示提示框
+        wrapper.style.display="block";
+    }
+}
+//鼠标监听
+wrapper.onmouseover=function(e){
+    　var e = e || window.event;
+　　　　var target = e.target || e.srcElement;
+   target.classList.add("check");
+}
+wrapper.onclick=function(e){
+    　var e = e || window.event;
+　　　　var target = e.target || e.srcElement;
+                
+       email.value= htmlDecode (target.innerHTML);
+       wrapper.style.display="none";
+       //用户点击鼠标，进行提示选择后，焦点依然在输入框中
+       email.focus();
+}
+wrapper.onmouseout=function(e){
+    　var e = e || window.event;
+　　　　var target = e.target || e.srcElement;
+target.classList.remove("check");
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件</title>
+    <style>
+        input{width:300px}
+        ul{margin:0;padding:0;border:1px solid #000;width: 302px;display: none}
+        .checked{background-color: #6eb6fe}
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <input id="email-input" type="text">
+    <ul id="email-sug-wrapper" class="email-sug" ></ul>
+</div>
+ 
+<script>
+    // 发现用户输入->获取用户输入内容->生成提示框提示内容->进行提示
+    function $(id) {
+        return document.getElementById(id);
+    }
+    input_obj = $('email-input');
+    var ulNode = $('email-sug-wrapper');
+ 
+    function get_input() {//获得input的内容
+        return input_obj.value.trim();//trim删除两边空格
+    }
+ 
+    function gen_prompt(value){//给定一个值，返回加上邮箱后缀的数组
+        var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        var postfixListFilter = [];
+        var right_value = '';
+        if(value.indexOf('@')!==-1) {
+                right_value = value.substring(value.indexOf('@')+1);
+                value = value.substring(0, value.indexOf('@'));//保留@左边的
+        }
+        if(right_value!==''){
+            var ptn = new RegExp('^'+right_value);
+            postfixListFilter = postfixList.filter(function (item) {
+            return ptn.test(item);
+        });
+        }
+        if(postfixListFilter.length!==0)
+            postfixList = postfixListFilter;
+ 
+        return postfixList.map(function (p) {
+            return value+'@'+p;
+        });
+    }
+ 
+    function add_prompt(ar) {//接受一个提示内容的数组,插入提示框
+        var email_wraper = $('email-sug-wrapper');
+ 
+        function gen_item_li(item) {
+            var para = document.createElement('li');
+            para.innerText = item;
+            return para;
+        }
+        email_wraper.innerHTML='';
+        ar.forEach(function (item) {
+            var item_li = gen_item_li(item);
+            email_wraper.appendChild(item_li);
+        });
+ 
+        ulNode.firstChild.classList.add('checked');
+    }
+ 
+    function toggle_window(){
+        var wrap_obj = $('email-sug-wrapper');
+ 
+        function show_window() {
+            wrap_obj.style.display = 'block';
+        }
+ 
+        function close_window() {
+            wrap_obj.style.display = 'none';
+        }
+ 
+        if (get_input()!=='')
+            show_window();
+        else
+            close_window();
+    }
+ 
+    // function resetCheck(){
+    //     // var lis = document.getElementById('email-sug-wrapper').getElementsByTagName('li');
+    //     // var i;
+    //     // for(i = 0;i<lis.length;i++)
+    //     //     if(lis[i].className.search('checked')!==-1 ) break;
+    //     // if(i!==lis.length)
+    //     //     if(i!==0){
+    //     //         lis[i].classList.remove('checked');
+    //     //         lis[0].classList.add('checked');
+    //     //     }
+    //     var checkedLi = document.getElementsByClassName('checked');
+    //     console.log(checkedLi);
+    //     console.log(ulNode.firstChild);
+    //     console.log(checkedLi===ulNode.firstChild);
+    //     if (Boolean(checkedLi))
+    //         if(checkedLi!==ulNode.firstChild){
+    //             checkedLi.classList.remove('checked');
+    //         }
+    //     ulNode.firstChild.classList.add('checked');
+ 
+ 
+    // }
+ 
+ 
+ 
+    input_obj.onkeydown = function (e) {
+        kCode = e.keyCode;
+        if ((kCode!==13&&kCode!==38&&kCode!==40)) {//回车，up，down
+            add_prompt(gen_prompt(get_input()));
+            toggle_window();
+        }
+        else{
+            var checkLi = document.getElementsByClassName('checked')[0];
+            checkLi.classList.remove('checked');
+            if(kCode===38){
+                if(checkLi===ulNode.firstChild)
+                    ulNode.lastChild.classList.add('checked');
+                else checkLi.previousSibling.classList.add('checked');
+            }
+            if(kCode===40){
+                if(checkLi===ulNode.lastChild)
+                    ulNode.firstChild.classList.add('checked');
+                else checkLi.nextSibling.classList.add('checked');
+            }
+            if(kCode===13){
+                input_obj.value = checkLi.innerHTML;
+                ulNode.style.display = 'none';
+            }
+        }
+    };
+ 
+    var liNodes = ulNode.getElementsByTagName('li');
+ 
+    ulNode.onclick = function (e) {
+        input_obj.value = e.target.innerHTML;
+        this.style.display = 'none';
+ 
+    };
+ 
+    ulNode.onmouseover = function (e) {
+        checkLi = document.getElementsByClassName('checked')[0];
+        checkLi.classList.remove('checked');
+        e.target.classList.add('checked');
+    }
+ 
+ 
+ 
+ 
+</script>
+</body>
+</html>
