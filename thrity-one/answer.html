@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="ife31data.js"></script>
+</head>
+<body>
+    <select id="region-select">
+        <option value="">请选择地区</option>
+        <option>华北</option>
+        <option>华东</option>
+        <option>华南</option>
+    </select>
+    <select id="goods-select">
+            <option value="">请选择商品</option>
+            <option>手机</option>
+            <option>笔记本</option>
+            <option>智能音箱</option>
+        </select>
+    <div id="table-wrapper">
+        <table id="create-t" border="1px">
+         <!-- <tr>
+             <th>商品</th>
+             <th>地区</th>
+             <th>1月</th>
+             <th>2月</th>
+             <th>3月</th>
+             <th>4月</th>
+             <th>5月</th>
+             <th>6月</th>
+             <th>7月</th>
+             <th>8月</th>
+             <th>9月</th>
+             <th>10月</th>
+             <th>11月</th>
+             <th>12月</th>
+         </tr> -->
+
+        </table>
+        <table id="create-g" border="1px">
+
+        </table>
+        <table id="create-gt">
+
+        </table>
+        </div>  
+
+
+    <script>
+    var regionSelect=document.getElementById("region-select");
+    var tableWrapper=document.getElementById("table-wrapper");
+    var createT=document.getElementById("create-t");
+    var createG=document.getElementById("create-g");
+    var createGT=document.getElementById("create-gt");
+    var goodsSelect=document.getElementById("goods-select");
+    var arr=[];
+
+    regionSelect.onchange=function(){
+        arr=[];
+        data();
+        //获取当前选择的下标
+        var de=regionSelect.selectedIndex;
+        var opValue=regionSelect.options[de].text;
+        createTable(opValue);
+    }
+    goodsSelect.onchange=function(){
+        arr=[];
+        data();
+        var de=goodsSelect.selectedIndex;
+        var opValue=goodsSelect.options[de].text;
+        createGoods(opValue);
+    }
+    tableWrapper.onclick=function(){
+        arr=[];
+        data();
+        var de=regionSelect.selectedIndex;
+        var reText=regionSelect.options[de].text;
+        var go=goodsSelect.selectedIndex;
+        var goText=goodsSelect.options[go].text;
+        createGt(reText,goText);
+    }
+    //regionGoods();
+    //转化维数组
+    function data(){
+       
+        for(var i in sourceData){
+        var arr2=[];
+         arr2.push(i);
+         //console.log(arr2);
+        for(var j in sourceData[i]){
+            //for(var a=0;a<arr2.length;a++)
+            arr2.push(sourceData[i][j]);
+          //  console.log(arr2);
+        }
+         arr.push(arr2);
+        // console.log(arr);  
+        
+    }
+}
+//地区
+function createTable(o){
+//var  ta=document.createElement("table");
+ //  tableWrapper.appendChild(ta);
+  //createT=document.querySelector("table");
+   createT.innerHTML="<tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr>"
+for(var i=0;i<arr.length;i++){
+    if(arr[i][2]==o){
+       // alert(1);
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.innerHTML=arr[i][1];
+        var td2 = document.createElement("td");
+        td2.innerHTML=arr[i][2];
+       
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        for(var j=0;j<arr[i][3].length;j++){
+        var td3 = document.createElement("td");
+        td3.innerHTML=arr[i][3][j];
+        tr.appendChild(td3);
+        }
+       
+        createT.appendChild(tr);
+       // console.log(2);
+    }
+}
+
+}
+
+//商品
+function createGoods(o){
+//    var  ta=document.createElement("table");
+ //  tableWrapper.appendChild(ta);
+ // createT=document.querySelector("table");
+   createG.innerHTML="<tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr>"
+for(var i=0;i<arr.length;i++){
+    if(arr[i][1]==o){
+       // alert(1);
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.innerHTML=arr[i][1];
+        var td2 = document.createElement("td");
+        td2.innerHTML=arr[i][2];
+       
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        for(var j=0;j<arr[i][3].length;j++){
+        var td3 = document.createElement("td");
+        td3.innerHTML=arr[i][3][j];
+        tr.appendChild(td3);
+        }
+       
+        createG.appendChild(tr);
+       // console.log(2);
+    }
+}
+}
+
+//合并
+function createGt(r,g){
+   createGT.innerHTML="<tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr>"
+for(var i=0;i<arr.length;i++){
+    //alert(2);
+    if(arr[i][2]==r&&arr[i][1]==g){
+   // alert(1);
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.innerHTML=arr[i][1];
+        var td2 = document.createElement("td");
+        td2.innerHTML=arr[i][2];
+       
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        for(var j=0;j<arr[i][3].length;j++){
+        var td3 = document.createElement("td");
+        td3.innerHTML=arr[i][3][j];
+        tr.appendChild(td3);
+        }
+       
+        createGT.appendChild(tr);
+       // console.log(2);
+    }
+}
+}
+
+    </script>
+</body>
+</html>
