@@ -9,29 +9,76 @@
 <body>
     <script>
         
-    function Restaurant(){
-        this.money=money;
+    function Restaurant(cash,seat,staff){
+        this.cash=cash;
         this.seat=seat;
-        this.worker=[];
+        this.staff=[];
  
     }  
-  Restaurant.prototype.recruitStaff=function(){
-
+  Restaurant.prototype.hire=function(x){
+    //招聘
+    this.staff.push(x);
+   // console.log(this.staff);
 }
-  Restaurant.prototype.layStaff=function(){
-
+  Restaurant.prototype.fire=function(y){
+      // worker.remove(staff[i]);
+     // this.staff. 
+     var index=this.staff.indexOf(y);
+   //this.staff.splice(index,1);
+  this.staff = this.staff.slice(0,index).concat(this.staff.slice(index+1));
 }  
-    function Worker(){
+    function Worker(ID,name,pay){
         this.ID=ID;
         this.name=name;
         this.pay=pay;
  
     }
     Worker.prototype.done=function(){
-
+         console.log("完成一次工作");
 }
-    var restauranter=new Worker();
-    var cooker=new Worker();
+function Waiter(ID,name,pay){
+    Worker.call(this,ID,name,pay);
+}
+Waiter.prototype.work=function(food){
+    if(Array.isArray(food)){
+        //判断数组
+        console.log("客人点菜");
+    }else{
+        console.log("上菜");
+    }
+}
+Waiter.prototype.constructor=Waiter;
+function Cook(ID,name,pay){
+    Worker.call(this,ID,name,pay);
+}
+Cook.prototype.work=function(food){
+     console.log("厨师：烹饪出菜品");
+}
+Cook.prototype.constructor=Cook;
+function Customer(){
+            this.eat=function(){
+                console.log("吃菜");
+            }
+           this.order=function(){
+                console.log("点菜");
+            }
+        }
+        function Dish(name,cost,price){
+            this.name=name;
+            this.cost=cost;
+            this.price=price;
+            
+        }
+var ifeRestaurant = new Restaurant(1000000, 20);
+
+var newCook = new Cook(1,"Tony", 10000);
+//var newCook2 = new Cook(2,"To", 10000);
+ifeRestaurant.hire(newCook);
+ifeRestaurant.hire(newCook2);
+console.log(ifeRestaurant.staff);
+
+ifeRestaurant.fire(newCook);
+console.log(ifeRestaurant.staff);
 
 // <!-- 
 // function fun(n,o){

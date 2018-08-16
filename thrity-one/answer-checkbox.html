@@ -74,76 +74,35 @@
    var regionWrapper=document.getElementById("region-radio-wrapper");
    var regionInput=document.querySelectorAll("#region-radio-wrapper input");
     var arr=[];
-    // function checkbox(){
-        
-    //     // for(var i=0;i<regionInput.length;i++){
-    //     //     regionInput[i].onclick=function(){
-    //     //         arr=[];
-    //     //        data();
-    //     //       if(regionInput[i].checked){
-    //     //          var n=regionInput[i].value;
-    //     //          createTable(n);
-    //     //       }else{
-    //     //         createT.innerHTML=""; 
-    //     //       }
-    //     //     }
-    //     // }
-
-    //  regionInput[0].onclick=function(){
-    //             arr=[];
-    //            data();
-    //           if(regionInput[0].checked){
-    //              var n=regionInput[0].value;
-    //              createTable(n);
-    //           }
-    //         }
-    //         regionInput[1].onclick=function(){
-    //             arr=[];
-    //            data();
-    //           if(regionInput[1].checked){
-    //              var n=regionInput[1].value;
-    //              createTable(n);
-    //           }
-    //         }
-    // }
-    // checkbox();
-    regionWrapper.onchange=function(){
-        for(var i=0;i<regionInput.length;i++){
+   var arr1=["华北","华东","华南"];
+    regionWrapper.onchange=function(e){
+     //createT.innerHTML="<tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr>"
+       // createT.innerHTML="";    
                 arr=[];
                data();
-              if(regionInput[i].checked){
-                 var n=regionInput[i].value;
-                 createTable(n);
-              }else{
-                createT.innerHTML=""; 
+               if(regionInput[3].checked){
+                regionInput[0].checked=true;
+                regionInput[1].checked=true;
+                regionInput[2].checked=true;
               }
-            }
+              if(regionInput[0].checked){
+               var   n="华北";
+                 createTable(n);
+              }
+             if(regionInput[1].checked){
+                var n="华东";
+                 createTable(n);
+              }
+             if(regionInput[2].checked){
+                var n="华南";
+                createTable(n);
+              }
+              
+              //createTable(a,b,c); 
+             
     }
 
-    // regionSelect.onchange=function(){
-    //     arr=[];
-    //     data();
-    //     var de=regionSelect.selectedIndex;
-    //     var opValue=regionSelect.options[de].text;
-    //     createTable(opValue);
-    // }
-    // goodsSelect.onchange=function(){
-    //     arr=[];
-    //     data();
-    //     var de=goodsSelect.selectedIndex;
-    //     var opValue=goodsSelect.options[de].text;
-    //     createGoods(opValue);
-    // }
-    // tableWrapper.onclick=function(){
-    //     arr=[];
-    //     data();
-    //     var de=regionSelect.selectedIndex;
-    //     var reText=regionSelect.options[de].text;
-    //     var go=goodsSelect.selectedIndex;
-    //     var goText=goodsSelect.options[go].text;
-    //     createGt(reText,goText);
-    // }
-    //regionGoods();
+
     //转化维数组
     function data(){
        
@@ -162,13 +121,13 @@
     }
 }
 //地区
-function createTable(o){
+function createTable(a){
 //var  ta=document.createElement("table");
  //  tableWrapper.appendChild(ta);
   //createT=document.querySelector("table");
-   //createT.innerHTML="<tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr>"
+  // createT.innerHTML="<tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr>"
 for(var i=0;i<arr.length;i++){
-    if(arr[i][2]==o){
+    if(arr[i][2]==a&&){
        // alert(1);
         var tr = document.createElement("tr");
         var td1 = document.createElement("td");
@@ -189,63 +148,10 @@ for(var i=0;i<arr.length;i++){
     }
 }
 
+
 }
 
-//商品
-function createGoods(o){
-//    var  ta=document.createElement("table");
- //  tableWrapper.appendChild(ta);
- // createT=document.querySelector("table");
-   createG.innerHTML="<tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr>"
-for(var i=0;i<arr.length;i++){
-    if(arr[i][1]==o){
-       // alert(1);
-        var tr = document.createElement("tr");
-        var td1 = document.createElement("td");
-        td1.innerHTML=arr[i][1];
-        var td2 = document.createElement("td");
-        td2.innerHTML=arr[i][2];
-       
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        for(var j=0;j<arr[i][3].length;j++){
-        var td3 = document.createElement("td");
-        td3.innerHTML=arr[i][3][j];
-        tr.appendChild(td3);
-        }
-       
-        createG.appendChild(tr);
-       // console.log(2);
-    }
-}
-}
 
-//合并
-function createGt(r,g){
-   createGT.innerHTML="<tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr>"
-for(var i=0;i<arr.length;i++){
-    //alert(2);
-    if(arr[i][2]==r&&arr[i][1]==g){
-   // alert(1);
-        var tr = document.createElement("tr");
-        var td1 = document.createElement("td");
-        td1.innerHTML=arr[i][1];
-        var td2 = document.createElement("td");
-        td2.innerHTML=arr[i][2];
-       
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        for(var j=0;j<arr[i][3].length;j++){
-        var td3 = document.createElement("td");
-        td3.innerHTML=arr[i][3][j];
-        tr.appendChild(td3);
-        }
-       
-        createGT.appendChild(tr);
-       // console.log(2);
-    }
-}
-}
 
     </script>
 </body>
